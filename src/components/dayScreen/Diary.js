@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-// const selector = useSelector(selectDiary);
+import {TimeLine} from '../TimeLine';
 
 export const Diary = ({content, hour, minute}) => {
-  // const [day, setDay] = useState(data.day);
-  // const [content, setContent] = useState(data.content);
   return (
     <Container>
       <TimeSection>
-        <TimeText>{hour} :</TimeText>
+        <TimeText>{hour} : </TimeText>
         <TimeText>{minute}</TimeText>
       </TimeSection>
-      <LineSection>
-        <Point />
-        <Line />
-      </LineSection>
+      <TimeLine />
       <ContentSection>
         <ContentText>{content}</ContentText>
       </ContentSection>
@@ -25,44 +20,30 @@ export const Diary = ({content, hour, minute}) => {
 const Container = styled.View`
   display: flex;
   width: 100%;
-  height: 100px;
+  min-height: 20px;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 20px;
 `;
 
 const TimeSection = styled.View`
   display: flex;
   width: 20%;
   flex-direction: row;
-  margin-left: 10px;
+  margin-right: 5px;
+  justify-content: flex-end;
 `;
 const TimeText = styled.Text`
   font-size: 20px;
 `;
 
-const LineSection = styled.View`
-  position: relative;
-  width: 10%;
-  justify-content: center;
-  align-items: center;
-`;
-const Point = styled.View`
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  border: 3px;
-`;
-const Line = styled.View`
-  position: absolute;
-  width: 3px;
-  height: 100%;
-  background-color: black;
-`;
 const ContentSection = styled.View`
   width: 70%;
 `;
 const ContentText = styled.Text`
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 15px;
+  padding-right: 10px;
+  margin-bottom: 20px;
 `;

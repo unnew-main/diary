@@ -4,6 +4,11 @@ import {AddDiaryModal} from '../components/dayScreen/AddDiaryModal';
 import {useSelector} from 'react-redux';
 import {selectDiary} from '../redux/DiaryReducers';
 import {Diary} from '../components/dayScreen/Diary';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 export const DayScreen = () => {
   let today = new Date();
   let time = {
@@ -15,7 +20,6 @@ export const DayScreen = () => {
 
   const [selectDay, setDay] = useState(time);
   const [showModal, setShowModal] = useState(false);
-
   const [todayDiary, setTodayDiary] = useState([]);
   // useEffect(() => {
   //   setDay({
@@ -36,6 +40,7 @@ export const DayScreen = () => {
       .sort(function (a, b) {
         return a.hour - b.hour || a.minute - b.minute;
       });
+
     setTodayDiary(tempDiary);
   }, [selector]);
   console.log(todayDiary);
@@ -44,9 +49,15 @@ export const DayScreen = () => {
   };
   return (
     <Container>
-      <Title>
-        {selectDay.year}년 {selectDay.month}월 {selectDay.day}일
-      </Title>
+      <Header
+        style={{
+          width: wp('100%'),
+          height: hp('15%'),
+        }}>
+        <Title>
+          {selectDay.year}년 {selectDay.month}월 {selectDay.day}일
+        </Title>
+      </Header>
       <DiaryList>
         {todayDiary.map(({content, hour, minute, id}) => (
           <Diary content={content} hour={hour} minute={minute} key={id} />
@@ -66,10 +77,13 @@ const Container = styled.SafeAreaView`
   align-items: center;
   position: relative;
 `;
+const Header = styled.View`
+  justify-content: center;
+  align-items: center;
+  border-bottom-width: 1px;
+`;
 const Title = styled.Text`
   font-size: 30px;
-  margin-top: 30px;
-  height: 10%;
 `;
 const DiaryList = styled.ScrollView`
   display: flex;

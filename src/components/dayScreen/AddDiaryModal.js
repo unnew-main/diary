@@ -17,6 +17,10 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
   const dispatch = useDispatch();
 
   const submitDiary = ({date, diaryContent}) => {
+    if (diaryContent === '') {
+      alert('내용을 입력해주세요.');
+      return;
+    }
     dispatch(
       uploadDiary({
         year: date.getFullYear(),
