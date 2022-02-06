@@ -38,7 +38,11 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
       visible={showModal}
       onRequestClose={() => closePopup()}>
       <Container>
-        <ModalHeader>
+        <ModalHeader
+          style={{
+            width: wp('100%'),
+            height: hp('5%'),
+          }}>
           <BackButton onPress={() => setShowModal(prev => !prev)}>
             <ButtonText>뒤로가기</ButtonText>
           </BackButton>
@@ -49,10 +53,9 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
         </ModalHeader>
         <ModalBody>
           <StyledKeyboardAwareScrollView
-            extraHeight={300}
             enableOnAndroid={true}
             enableAutomaticScroll={Platform.OS === 'ios'}
-            contentContainerStyle={{height: '-10%'}}
+            // contentContainerStyle={{height: '-10%'}}
             extraHeight={30}
             // resetScrollToCoords={{x: 0, y: 0}}
             scrollEnabled={true}
@@ -113,8 +116,6 @@ const ModalSection = styled.Modal`
 const ModalHeader = styled.View`
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 5%;
   justify-content: space-around;
   align-items: flex-end;
   position: relative;

@@ -26,14 +26,17 @@ export const DayScreen = () => {
   // }, [days]);
 
   useEffect(() => {
-    setTodayDiary(
-      selector.filter(
+    const tempDiary = selector
+      .filter(
         data =>
           data.year == selectDay.year &&
           data.month == selectDay.month &&
           data.day == selectDay.day,
-      ),
-    );
+      )
+      .sort(function (a, b) {
+        return a.hour - b.hour || a.minute - b.minute;
+      });
+    setTodayDiary(tempDiary);
   }, [selector]);
   console.log(todayDiary);
   const handleAddDiary = () => {
@@ -45,8 +48,8 @@ export const DayScreen = () => {
         {selectDay.year}년 {selectDay.month}월 {selectDay.day}일
       </Title>
       <DiaryList>
-        {todayDiary.map(data => (
-          <Diary data={data} />
+        {todayDiary.map(({content, hour, minute, id}) => (
+          <Diary content={content} hour={hour} minute={minute} key={id} />
         ))}
       </DiaryList>
       <AddButton onPress={handleAddDiary} />
@@ -68,10 +71,11 @@ const Title = styled.Text`
   margin-top: 30px;
   height: 10%;
 `;
-const DiaryList = styled.View`
+const DiaryList = styled.ScrollView`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: flex-start;
+  align-items: center; */
+  width: 100%;
   height: 90%;
 `;
 const AddButton = styled.TouchableOpacity`
