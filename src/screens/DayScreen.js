@@ -51,12 +51,16 @@ export const DayScreen = ({route}) => {
           width: wp('100%'),
           height: hp('15%'),
         }}>
-        <PervDay onPress={handleSubDay}></PervDay>
-        <Title>
-          {nowDay.getFullYear()}년 {nowDay.getMonth() + 1}월 {nowDay.getDate()}
-          일
-        </Title>
-        <NextDay onPress={handleAddDay}></NextDay>
+        <DayHeader>
+          <PervDay onPress={handleSubDay}></PervDay>
+          <Title>
+            {nowDay.getFullYear()}년 {nowDay.getMonth() + 1}월{' '}
+            {nowDay.getDate()}일
+          </Title>
+          <NextDay onPress={handleAddDay}></NextDay>
+        </DayHeader>
+
+        <AddButton onPress={() => setShowModal(!showModal)} />
       </Header>
       <DiaryList>
         {todayDiary.map(({content, hour, minute, id}) => (
@@ -69,7 +73,6 @@ export const DayScreen = ({route}) => {
           />
         ))}
       </DiaryList>
-      <AddButton onPress={() => setShowModal(!showModal)} />
 
       <AddDiaryModal
         showModal={showModal}
@@ -89,16 +92,25 @@ const Container = styled.SafeAreaView`
   position: relative;
 `;
 const Header = styled.View`
-  flex-direction: row;
+  display: flex;
+
   justify-content: space-around;
   align-items: center;
   border-bottom-width: 1px;
+`;
+const DayHeader = styled.View`
+  width: 100%;
+  height: 60%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 `;
 const PervDay = styled.TouchableOpacity`
   width: 30px;
   height: 30px;
   background-color: red;
 `;
+
 const Title = styled.Text`
   font-size: 30px;
 `;
@@ -107,17 +119,13 @@ const NextDay = styled.TouchableOpacity`
   height: 30px;
   background-color: red;
 `;
-
+const AddButton = styled.TouchableOpacity`
+  background-color: black;
+  border-radius: 15px;
+  width: 70px;
+  height: 20px;
+`;
 const DiaryList = styled.ScrollView`
   width: 100%;
   height: 90%;
-`;
-const AddButton = styled.TouchableOpacity`
-  position: absolute;
-  background-color: black;
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
-  bottom: 20px;
-  left: 30px;
 `;
