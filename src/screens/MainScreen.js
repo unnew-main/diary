@@ -7,18 +7,18 @@ const Tab = createBottomTabNavigator();
 export const MainScreen = ({navigation}) => {
   return (
     <Tab.Navigator
-      initialRouteName=" "
+      initialRouteName="diary"
       screenOptions={{
         tabBarShowLabel: false,
       }}>
-      <Tab.Screen name="달력" component={CalendarScreen} />
+      <Tab.Screen name="calendar" component={CalendarScreen} />
       <Tab.Screen
-        name="일기장"
+        name="diary"
         component={DayScreen}
         options={{headerShown: false, tabBarLabel: 'Updates'}}
       />
 
-      <Tab.Screen name="내정보" component={MyPageScreen} />
+      <Tab.Screen name="mypage" component={MyPageScreen} />
     </Tab.Navigator>
   );
 };

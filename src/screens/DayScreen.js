@@ -9,43 +9,40 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-export const DayScreen = () => {
-  let today = new Date();
-  let time = {
-    year: today.getFullYear(), //현재 년도
-    month: today.getMonth() + 1, // 현재 월
-    day: today.getDate(), // 현제 날짜
-  };
-  const selector = useSelector(selectDiary);
-
-  const [selectDay, setDay] = useState(time);
+export const DayScreen = ({route}) => {
+  const date = route.params ? route.params.date : null;
+  const [nowDay, setNowDay] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
   const [todayDiary, setTodayDiary] = useState([]);
-  // useEffect(() => {
-  //   setDay({
-  //     year: days.getFullYear(), //현재 년도
-  //     month: days.getMonth() + 1, // 현재 월
-  //     date: days.getDate(), // 현제 날짜 })
-  //   });
-  // }, [days]);
+  const selector = useSelector(selectDiary);
+  useEffect(() => {
+    setNowDay(date !== null ? new Date(date) : new Date());
+  }, [route]);
 
   useEffect(() => {
     const tempDiary = selector
       .filter(
         data =>
-          data.year == selectDay.year &&
-          data.month == selectDay.month &&
-          data.day == selectDay.day,
+          data.year == nowDay.getFullYear() &&
+          data.month == nowDay.getMonth() + 1 &&
+          data.day == nowDay.getDate(),
       )
       .sort(function (a, b) {
         return a.hour - b.hour || a.minute - b.minute;
       });
 
     setTodayDiary(tempDiary);
-  }, [selector]);
-  console.log(todayDiary);
-  const handleAddDiary = () => {
-    setShowModal(prev => !prev);
+  }, [selector, nowDay]);
+
+  const handleSubDay = () => {
+    const yesterday = new Date(nowDay);
+    yesterday.setDate(nowDay.getDate() - 1);
+    setNowDay(yesterday);
+  };
+  const handleAddDay = () => {
+    const tomorrow = new Date(nowDay);
+    tomorrow.setDate(nowDay.getDate() + 1);
+    setNowDay(tomorrow);
   };
   return (
     <Container>
@@ -54,17 +51,31 @@ export const DayScreen = () => {
           width: wp('100%'),
           height: hp('15%'),
         }}>
+        <PervDay onPress={handleSubDay}></PervDay>
         <Title>
-          {selectDay.year}년 {selectDay.month}월 {selectDay.day}일
+          {nowDay.getFullYear()}년 {nowDay.getMonth() + 1}월 {nowDay.getDate()}
+          일
         </Title>
+        <NextDay onPress={handleAddDay}></NextDay>
       </Header>
       <DiaryList>
         {todayDiary.map(({content, hour, minute, id}) => (
-          <Diary content={content} hour={hour} minute={minute} key={id} />
+          <Diary
+            content={content}
+            hour={hour}
+            minute={minute}
+            key={id}
+            id={id}
+          />
         ))}
       </DiaryList>
-      <AddButton onPress={handleAddDiary} />
-      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
+      <AddButton onPress={() => setShowModal(!showModal)} />
+
+      <AddDiaryModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        nowDay={nowDay}
+      />
     </Container>
   );
 };
@@ -78,17 +89,26 @@ const Container = styled.SafeAreaView`
   position: relative;
 `;
 const Header = styled.View`
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   border-bottom-width: 1px;
+`;
+const PervDay = styled.TouchableOpacity`
+  width: 30px;
+  height: 30px;
+  background-color: red;
 `;
 const Title = styled.Text`
   font-size: 30px;
 `;
+const NextDay = styled.TouchableOpacity`
+  width: 30px;
+  height: 30px;
+  background-color: red;
+`;
+
 const DiaryList = styled.ScrollView`
-  display: flex;
-  /* justify-content: flex-start;
-  align-items: center; */
   width: 100%;
   height: 90%;
 `;
@@ -101,4 +121,3 @@ const AddButton = styled.TouchableOpacity`
   bottom: 20px;
   left: 30px;
 `;
-const Modal = styled(AddDiaryModal)``;

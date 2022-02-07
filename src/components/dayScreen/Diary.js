@@ -1,18 +1,55 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {TimeLine} from '../TimeLine';
+import {useDispatch} from 'react-redux';
+import Modal from 'react-native-modal';
+import {deleteDiary} from '../../redux/DiaryReducers';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-export const Diary = ({content, hour, minute}) => {
+export const Diary = ({content, hour, minute, id}) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const [showLongPressModal, setShowLongPressModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteDiray = () => {
+    setShowLongPressModal(false);
+    setShowModal(true);
+    dispatch(deleteDiary({id: id}));
+  };
   return (
     <Container>
       <TimeSection>
-        <TimeText>{hour} : </TimeText>
-        <TimeText>{minute}</TimeText>
+        <TimeText>{hour < 10 ? '0' + hour : hour} : </TimeText>
+        <TimeText>{minute < 10 ? '0' + minute : minute}</TimeText>
       </TimeSection>
       <TimeLine />
-      <ContentSection>
+      <ContentSection onLongPress={() => setShowLongPressModal(true)}>
         <ContentText>{content}</ContentText>
       </ContentSection>
+      <ModalContainer
+        style={{
+          width: wp('100%'),
+          height: hp('15%'),
+        }}
+        isVisible={showLongPressModal}
+        backdropOpacity={0.2}
+        onBackdropPress={() => setShowLongPressModal(false)}>
+        <ModalSection>
+          <DeleteButton onPress={handleDeleteDiray}>
+            <ButtonText style={{color: 'red'}}>삭제하기</ButtonText>
+          </DeleteButton>
+          <Line />
+
+          <ModifyButton onPress={() => setShowLongPressModal(false)}>
+            <ButtonText>취소하기</ButtonText>
+          </ModifyButton>
+        </ModalSection>
+      </ModalContainer>
     </Container>
   );
 };
@@ -38,7 +75,7 @@ const TimeText = styled.Text`
   font-size: 20px;
 `;
 
-const ContentSection = styled.View`
+const ContentSection = styled.TouchableOpacity`
   width: 70%;
 `;
 const ContentText = styled.Text`
@@ -46,4 +83,39 @@ const ContentText = styled.Text`
   font-size: 15px;
   padding-right: 10px;
   margin-bottom: 20px;
+`;
+const ModalContainer = styled(Modal)`
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+`;
+const ModalSection = styled.View`
+  width: 80%;
+  height: 150px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+`;
+const ModifyButton = styled.TouchableOpacity`
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+`;
+const Line = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+`;
+
+const DeleteButton = styled.TouchableOpacity`
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ButtonText = styled.Text`
+  color: blue;
+  font-size: 20px;
 `;

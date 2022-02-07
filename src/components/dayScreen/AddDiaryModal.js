@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import DatePicker from 'react-native-date-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
-import {uploadDiary} from '../../redux/DiaryReducers';
+import {uploadDiary, modifyDiary} from '../../redux/DiaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-export const AddDiaryModal = ({showModal, setShowModal}) => {
+export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
   const [diaryContent, setDiaryContent] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(nowDay));
   const [dateOpen, setDateOpen] = useState(false);
-
   const dispatch = useDispatch();
+  useEffect(() => setDate(new Date(nowDay)), [nowDay]);
 
   const submitDiary = ({date, diaryContent}) => {
     if (diaryContent === '') {
@@ -34,9 +34,12 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
     );
     setShowModal(prev => !prev);
   };
-
   return (
     <ModalSection
+      style={{
+        width: wp('100%'),
+        height: hp('100%'),
+      }}
       animationType={'slide'}
       transparent={false}
       visible={showModal}
@@ -59,9 +62,7 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
           <StyledKeyboardAwareScrollView
             enableOnAndroid={true}
             enableAutomaticScroll={Platform.OS === 'ios'}
-            // contentContainerStyle={{height: '-10%'}}
             extraHeight={30}
-            // resetScrollToCoords={{x: 0, y: 0}}
             scrollEnabled={true}
             enableAutomaticScroll={true}>
             <CenterView>
@@ -106,17 +107,20 @@ export const AddDiaryModal = ({showModal, setShowModal}) => {
     </ModalSection>
   );
 };
-const Container = styled.SafeAreaView`
-  justify-content: center;
-  align-items: center;
-`;
-
 const ModalSection = styled.Modal`
   justify-content: center;
   align-items: center;
+  margin: 0;
 
   background-color: white;
 `;
+const Container = styled.SafeAreaView`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalHeader = styled.View`
   display: flex;
   flex-direction: row;

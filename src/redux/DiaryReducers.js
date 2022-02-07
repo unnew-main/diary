@@ -18,7 +18,7 @@ const diarySlice = createSlice({
       state[0].nextId += 1;
     },
     deleteDiary: (state, action) => {
-      state.push('delete');
+      return (state = state.filter(data => data.id !== action.payload.id));
     },
     modifyDiary: (state, action) => {
       state.push('modify');
