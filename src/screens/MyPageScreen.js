@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
-export const MonthScreen = () => {
+export const MyPageScreen = () => {
   return (
     <SafeAreaView>
-      <Text>MonthScreen</Text>
+      <Text>WeekScreen</Text>
     </SafeAreaView>
   );
 };

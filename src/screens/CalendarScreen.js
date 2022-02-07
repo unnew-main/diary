@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
-export const WeekScreen = () => {
+export const CalendarScreen = () => {
   return (
     <SafeAreaView>
-      <Text>WeekScreen</Text>
+      <Text>CalendarScreen</Text>
     </SafeAreaView>
   );
 };

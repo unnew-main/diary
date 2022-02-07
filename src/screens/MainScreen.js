@@ -1,17 +1,24 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {MonthScreen, WeekScreen, DayScreen} from '.';
-import styled from 'styled-components/native';
+import {CalendarScreen, MyPageScreen, DayScreen} from '.';
+
 const Tab = createBottomTabNavigator();
 
 export const MainScreen = ({navigation}) => {
   return (
     <Tab.Navigator
-      initialRouteName="Month"
-      screenOptions={{headerShown: false}}>
-      <Tab.Screen name="Month" component={MonthScreen} />
-      <Tab.Screen name="Week" component={WeekScreen} />
-      <Tab.Screen name="Day" component={DayScreen} days={(4, 3, '토')} />
+      initialRouteName=" "
+      screenOptions={{
+        tabBarShowLabel: false,
+      }}>
+      <Tab.Screen name="달력" component={CalendarScreen} />
+      <Tab.Screen
+        name="일기장"
+        component={DayScreen}
+        options={{headerShown: false, tabBarLabel: 'Updates'}}
+      />
+
+      <Tab.Screen name="내정보" component={MyPageScreen} />
     </Tab.Navigator>
   );
 };
