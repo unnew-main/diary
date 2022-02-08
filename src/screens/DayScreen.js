@@ -8,6 +8,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export const DayScreen = ({route}) => {
   const date = route.params ? route.params.date : null;
@@ -53,15 +54,21 @@ export const DayScreen = ({route}) => {
           height: hp('15%'),
         }}>
         <DayHeader>
-          <PervDay onPress={handleSubDay}></PervDay>
+          <HandleDayButton onPress={handleSubDay}>
+            <Icon name="left" size={24} color={'#00B386'} />
+          </HandleDayButton>
           <Title>
             {nowDay.getFullYear()}년 {nowDay.getMonth() + 1}월{' '}
             {nowDay.getDate()}일
           </Title>
-          <NextDay onPress={handleAddDay}></NextDay>
+          <HandleDayButton onPress={handleAddDay}>
+            <Icon name="right" size={24} color={'#00B386'} />
+          </HandleDayButton>
         </DayHeader>
 
-        <AddButton onPress={() => setShowModal(!showModal)} />
+        <AddButton onPress={() => setShowModal(!showModal)}>
+          <Icon name="plus" size={24} color={'#FFFFFF'} />
+        </AddButton>
       </Header>
       <DiaryList>
         {todayDiary.map(({content, hour, minute, id}) => (
@@ -101,30 +108,31 @@ const Header = styled.View`
 `;
 const DayHeader = styled.View`
   width: 100%;
-  height: 60%;
+  height: 50%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 `;
-const PervDay = styled.TouchableOpacity`
+const HandleDayButton = styled.TouchableOpacity`
   width: 30px;
   height: 30px;
-  background-color: red;
+
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.Text`
   font-size: 30px;
 `;
-const NextDay = styled.TouchableOpacity`
-  width: 30px;
-  height: 30px;
-  background-color: red;
-`;
+
 const AddButton = styled.TouchableOpacity`
-  background-color: black;
+  background-color: #00b386;
   border-radius: 15px;
   width: 70px;
-  height: 20px;
+  height: 30px;
+
+  justify-content: center;
+  align-items: center;
 `;
 const DiaryList = styled.ScrollView`
   width: 100%;

@@ -8,8 +8,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-// import Clipboard from '@react-native-clipboard/clipboard';
-
 export const Diary = ({content, hour, minute, id}) => {
   const [showLongPressModal, setShowLongPressModal] = useState(false);
 
@@ -19,10 +17,9 @@ export const Diary = ({content, hour, minute, id}) => {
     setShowLongPressModal(false);
     dispatch(deleteDiary({id: id}));
   };
-  const handleCopyDiray = () => {
-    // Clipboard.setString(content);
-    setShowLongPressModal(false);
-  };
+  // const handleCopyDiray = () => {
+  //   setShowLongPressModal(false);
+  // };
   return (
     <Container>
       <TimeSection>
@@ -46,13 +43,13 @@ export const Diary = ({content, hour, minute, id}) => {
             <ButtonText style={{color: 'red'}}>삭제하기</ButtonText>
           </DeleteButton>
           <Line />
-          <CopyButton onPress={handleCopyDiray}>
+          {/* <CopyButton onPress={handleCopyDiray}>
             <ButtonText style={{color: 'blue'}}>복사하기</ButtonText>
           </CopyButton>
-          <Line />
-          <ModifyButton onPress={() => setShowLongPressModal(false)}>
+          <Line /> */}
+          <CancelButton onPress={() => setShowLongPressModal(false)}>
             <ButtonText style={{color: 'gray'}}>취소하기</ButtonText>
-          </ModifyButton>
+          </CancelButton>
         </ModalSection>
       </ModalContainer>
     </Container>
@@ -96,14 +93,14 @@ const ModalContainer = styled(Modal)`
 `;
 const ModalSection = styled.View`
   width: 60%;
-  height: 180px;
+  height: 120px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 `;
-const ModifyButton = styled.TouchableOpacity`
+const CancelButton = styled.TouchableOpacity`
   width: 100%;
-  height: 33%;
+  height: 50%;
   justify-content: center;
   align-items: center;
 `;
@@ -112,15 +109,15 @@ const Line = styled.View`
   height: 1px;
   background-color: gray;
 `;
-const CopyButton = styled.TouchableOpacity`
-  width: 100%;
-  height: 33%;
-  justify-content: center;
-  align-items: center;
-`;
+// const CopyButton = styled.TouchableOpacity`
+//   width: 100%;
+//   height: 33%;
+//   justify-content: center;
+//   align-items: center;
+// `;
 const DeleteButton = styled.TouchableOpacity`
   width: 100%;
-  height: 33%;
+  height: 50%;
   justify-content: center;
   align-items: center;
 `;

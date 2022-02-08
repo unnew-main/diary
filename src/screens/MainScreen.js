@@ -1,8 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CalendarScreen, MyPageScreen, DayScreen} from '.';
-// import {Entypo} from '@expo/vector-icons';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 const Tab = createBottomTabNavigator();
 
 export const MainScreen = () => {
@@ -15,24 +14,45 @@ export const MainScreen = () => {
       <Tab.Screen
         name="Calendar"
         component={CalendarScreen}
-        // option={{
-        //   tabBarIcon: () => (
-        //     // <Entypo
-        //     //   name="calendar"
-        //     //   style={{color: focused ? '#00B386' : '#404040'}}
-        //     //   size={24}
-        //     //   color="black"
-        //     // />
-        //   ),
-        // }}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="calendar"
+              size={24}
+              style={{color: focused ? '#00B386' : '#404040'}}
+            />
+          ),
+        }}
       />
       <Tab.Screen
         name="diary"
         component={DayScreen}
-        options={{headerShown: false, tabBarLabel: 'Updates'}}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Updates',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="home"
+              size={24}
+              style={{color: focused ? '#00B386' : '#404040'}}
+            />
+          ),
+        }}
       />
 
-      <Tab.Screen name="MyPage" component={MyPageScreen} />
+      <Tab.Screen
+        name="MyPage"
+        component={MyPageScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="user"
+              size={24}
+              style={{color: focused ? '#00B386' : '#404040'}}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

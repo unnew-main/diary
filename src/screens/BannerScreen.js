@@ -3,27 +3,40 @@ import {TextLoop} from '../components/TextLoop';
 import styled from 'styled-components/native';
 export const BannerScreen = ({navigation}) => {
   return (
-    <Container
-      source={require('../../assets/imgs/bannerIMG.jpg')}
-      blurRadius={5}>
-      <Title>당신의 하루를 위하여</Title>
+    <Container>
+      <TitleView>
+        <Title>
+          <UpTtle>기록</UpTtle>
+          <DownTitle>일기</DownTitle>
+        </Title>
+      </TitleView>
       <StartButton onPress={() => navigation.navigate('Main')}>
-        <StartButtonText text={'- 터치하여 당신의 하루를 보기 -'} />
+        <StartButtonText text={'- 하루를 기록하러 가기 -'} />
       </StartButton>
     </Container>
   );
 };
 
-const Container = styled.ImageBackground`
+const Container = styled.View`
   width: 100%;
   height: 100%;
   justify-content: space-around;
   align-items: center;
 `;
-const Title = styled.Text`
-  font-size: 30px;
-  color: white;
+const TitleView = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-top: 80px;
+`;
+const Title = styled.View``;
+const UpTtle = styled.Text`
+  font-size: 90px;
+  color: black;
+`;
+const DownTitle = styled.Text`
+  font-size: 90px;
+  color: black;
 `;
 const StartButton = styled.TouchableOpacity`
   height: 20%;
@@ -33,5 +46,5 @@ const StartButton = styled.TouchableOpacity`
 `;
 const StartButtonText = styled(TextLoop)`
   font-size: 20px;
-  color: white;
+  color: black;
 `;
