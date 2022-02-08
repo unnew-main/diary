@@ -29,11 +29,3 @@ const diarySlice = createSlice({
 export const {uploadDiary, deleteDiary, modifyDiary} = diarySlice.actions;
 export const selectDiary = state => state;
 export default diarySlice.reducer;
-
-// [
-//   {
-//     id: 1,
-//     date: 2020 / 2 / 1,
-//     content: 'adsfsad',
-//   },
-// ];

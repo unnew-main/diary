@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {TimeLine} from '../TimeLine';
 import {useDispatch} from 'react-redux';
 import Modal from 'react-native-modal';
-import {deleteDiary} from '../../redux/DiaryReducers';
+import {deleteDiary} from '../../redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

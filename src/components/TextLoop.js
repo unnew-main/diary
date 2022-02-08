@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, Animated} from 'react-native';
+import {Animated} from 'react-native';
 
 export const TextLoop = ({text, style}) => {
   const [textOpacity] = useState(new Animated.Value(0));

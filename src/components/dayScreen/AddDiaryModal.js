@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import DatePicker from 'react-native-date-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
-import {uploadDiary, modifyDiary} from '../../redux/DiaryReducers';
+import {uploadDiary} from '../../redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {AddDiaryModal} from '../components/dayScreen/AddDiaryModal';
 import {useSelector} from 'react-redux';
-import {selectDiary} from '../redux/DiaryReducers';
+import {selectDiary} from '../redux/diaryReducers';
 import {Diary} from '../components/dayScreen/Diary';
 import {
   widthPercentageToDP as wp,
@@ -14,7 +14,8 @@ export const DayScreen = ({route}) => {
   const [nowDay, setNowDay] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
   const [todayDiary, setTodayDiary] = useState([]);
-  const selector = useSelector(selectDiary);
+
+  const selector = useSelector(selectDiary).DiaryReducer;
   useEffect(() => {
     setNowDay(date !== null ? new Date(date) : new Date());
   }, [route]);
