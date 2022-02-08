@@ -4,8 +4,8 @@ const settingSlice = createSlice({
   name: 'setting',
   initialState: {firstDay: 0},
   reducers: {
-    handleFirstDay: state => {
-      state.firstDay === 0 ? 1 : 0;
+    handleFirstDay: (state, action) => {
+      state.firstDay = action.payload.firstDay === true ? 1 : 0;
     },
   },
 });

@@ -8,7 +8,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Clipboard from '@react-native-community/react-native-clipboard';
+// import Clipboard from '@react-native-clipboard/clipboard';
 
 export const Diary = ({content, hour, minute, id}) => {
   const [showLongPressModal, setShowLongPressModal] = useState(false);
@@ -20,7 +20,7 @@ export const Diary = ({content, hour, minute, id}) => {
     dispatch(deleteDiary({id: id}));
   };
   const handleCopyDiray = () => {
-    Clipboard.setString(content);
+    // Clipboard.setString(content);
     setShowLongPressModal(false);
   };
   return (

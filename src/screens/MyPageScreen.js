@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {selectDiary} from '../redux/diaryReducers';
-
+import {handleFirstDay} from '../redux/settingReducer';
 export const MyPageScreen = () => {
+  const [isFirstDay, setIsFirstDay] = useState(false);
   const selector = useSelector(selectDiary).DiaryReducer;
-  console.log(selector.length - 1);
-
+  const dispatch = useDispatch();
+  const handleFirstDayToggle = () => {
+    setIsFirstDay(prev => !prev);
+    dispatch(handleFirstDay({firstDay: !isFirstDay ? true : false}));
+  };
   return (
     <Container>
       <AllDiarySection>
@@ -17,7 +21,10 @@ export const MyPageScreen = () => {
       <SettingSection>
         <CheckSection>
           <CheckText>월요일 시작으로 변경</CheckText>
-          <CheckToggle />
+          <CheckToggle
+            onValueChange={handleFirstDayToggle}
+            value={isFirstDay}
+          />
         </CheckSection>
       </SettingSection>
     </Container>
@@ -43,7 +50,7 @@ const AllDiaryText = styled.Text`
   margin-bottom: 5px;
 `;
 const AllDiaryData = styled.Text`
-  font-size: 50px;
+  font-size: 60px;
   font-weight: bold;
   margin-bottom: 30px;
 `;

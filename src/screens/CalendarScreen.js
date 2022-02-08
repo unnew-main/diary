@@ -7,7 +7,6 @@ import {selectDiary} from '../redux/diaryReducers';
 export const CalendarScreen = ({navigation}) => {
   const {DiaryReducer: diarySelector, SettingReducer: settingSelector} =
     useSelector(selectDiary);
-  console.log('d', diarySelector, 's', settingSelector);
   const markedObject = new Object();
   diarySelector.map(data => {
     if (data.nextId) return false;
