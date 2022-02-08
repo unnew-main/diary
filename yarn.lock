@@ -1243,6 +1243,11 @@
   resolved "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.11.tgz"
   integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
 
+"@react-native-community/react-native-clipboard@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/react-native-clipboard/-/react-native-clipboard-1.0.1.tgz#91ad2e77c54e33de609a23d9be9276f47a96d189"
+  integrity sha512-FeVdKwnujjIJsr3ZdzA/6LH6O+lJPyxjCq+MEtarm6mC6XHSH0YYJhfbL8fn+RlRymwH6ct10u9syIz7GrAn7A==
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"
