@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {TimeLine} from '@components/TimeLine';
+import {TimeLine} from '@/components/dayScreen/TimeLine';
 import {useDispatch} from 'react-redux';
 import Modal from 'react-native-modal';
 import {deleteDiary} from '@redux/diaryReducers';

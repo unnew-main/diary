@@ -9,6 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {customColor} from '@/../constants';
+
 export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
   const [diaryContent, setDiaryContent] = useState('');
   const [date, setDate] = useState(new Date(nowDay));
@@ -53,7 +54,7 @@ export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
           <BackButton onPress={() => setShowModal(prev => !prev)}>
             <ButtonText>뒤로가기</ButtonText>
           </BackButton>
-          <Title>일기 작성</Title>
+          <Title>메모 작성</Title>
           <SubmitButton onPress={() => submitDiary({date, diaryContent})}>
             <ButtonText>글쓰기</ButtonText>
           </SubmitButton>
