@@ -30,7 +30,7 @@ React Native Cli로 개발한 간단한 메모어플리케이션입니다.
     </td>
     <td>
     <div>메모 작성</div>
-    <img src="https://user-images.githubusercontent.com/77093030/153117499-75b9f625-456e-4a62-a187-002a2f6bbcfb.png" width="200px"/>
+    <img src="https://user-images.githubusercontent.com/77093030/153122020-89d5b596-6d41-401c-a5fe-d8a9646d5f64.png" width="200px"/>
     </td>
     </tr>
   </tbody>
