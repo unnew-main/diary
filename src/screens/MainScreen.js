@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CalendarScreen, MyPageScreen, DayScreen} from '.';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {customColor} from '@/../constants';
+import {SafeAreaView} from 'react-native-safe-area-context';
 const Tab = createBottomTabNavigator();
 
 export const MainScreen = () => {
@@ -16,6 +17,7 @@ export const MainScreen = () => {
         name="Calendar"
         component={CalendarScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon
               name="calendar"
@@ -45,6 +47,7 @@ export const MainScreen = () => {
         name="MyPage"
         component={MyPageScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon
               name="user"

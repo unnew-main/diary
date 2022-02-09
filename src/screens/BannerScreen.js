@@ -7,8 +7,8 @@ export const BannerScreen = ({navigation}) => {
     <Container>
       <TitleView>
         <Title>
-          <UpTtle>기록</UpTtle>
-          <DownTitle>일기</DownTitle>
+          <UpTtle>네줄</UpTtle>
+          <DownTitle>메모</DownTitle>
         </Title>
       </TitleView>
       <StartButton onPress={() => navigation.navigate('Main')}>

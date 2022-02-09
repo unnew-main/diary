@@ -26,6 +26,17 @@ export const CalendarScreen = ({navigation}) => {
         }}
         firstDay={settingSelector.firstDay}
         markedDates={markedObject}
+        theme={{
+          todayTextColor: customColor.green,
+          'stylesheet.calendar.header': {
+            dayTextAtIndex0: {
+              color: 'red',
+            },
+            dayTextAtIndex6: {
+              color: 'blue',
+            },
+          },
+        }}
       />
     </SafeAreaView>
   );

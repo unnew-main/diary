@@ -38,7 +38,7 @@ const Container = styled.SafeAreaView`
   justify-content: flex-start;
   align-items: center;
   margin: 30px;
-  margin-top: 50px;
+  margin-top: 100px;
 `;
 const AllDiarySection = styled.View`
   width: 100%;
