@@ -191,6 +191,7 @@ const DiaryTextInput = styled.TextInput`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
+  color: ${customColor.black};
 `;
 const Subtitle = styled.Text`
   width: 80%;
