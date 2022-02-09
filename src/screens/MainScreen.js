@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CalendarScreen, MyPageScreen, DayScreen} from '.';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {customColor} from '@/../constants';
 const Tab = createBottomTabNavigator();
 
 export const MainScreen = () => {
@@ -19,7 +20,7 @@ export const MainScreen = () => {
             <Icon
               name="calendar"
               size={24}
-              style={{color: focused ? '#00B386' : '#404040'}}
+              style={{color: focused ? customColor.green : customColor.black}}
             />
           ),
         }}
@@ -34,7 +35,7 @@ export const MainScreen = () => {
             <Icon
               name="home"
               size={24}
-              style={{color: focused ? '#00B386' : '#404040'}}
+              style={{color: focused ? customColor.green : customColor.black}}
             />
           ),
         }}
@@ -48,7 +49,7 @@ export const MainScreen = () => {
             <Icon
               name="user"
               size={24}
-              style={{color: focused ? '#00B386' : '#404040'}}
+              style={{color: focused ? customColor.green : customColor.black}}
             />
           ),
         }}

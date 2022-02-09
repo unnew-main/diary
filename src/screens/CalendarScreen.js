@@ -2,7 +2,8 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {CalendarList} from 'react-native-calendars';
 import {useSelector} from 'react-redux';
-import {selectDiary} from '../redux/diaryReducers';
+import {selectDiary} from '@redux/diaryReducers';
+import {customColor} from '@/../constants';
 
 export const CalendarScreen = ({navigation}) => {
   const {DiaryReducer: diarySelector, SettingReducer: settingSelector} =
@@ -13,7 +14,7 @@ export const CalendarScreen = ({navigation}) => {
     const month = data.month < 10 ? '0' + data.month : data.month;
     const day = data.day < 10 ? '0' + data.day : data.day;
     const formatDate = data.year + '-' + month + '-' + day;
-    markedObject[formatDate] = {marked: true};
+    markedObject[formatDate] = {marked: true, dotColor: customColor.green};
   });
 
   return (

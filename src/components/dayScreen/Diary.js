@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {TimeLine} from '../TimeLine';
+import {TimeLine} from '@components/TimeLine';
 import {useDispatch} from 'react-redux';
 import Modal from 'react-native-modal';
-import {deleteDiary} from '../../redux/diaryReducers';
+import {deleteDiary} from '@redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {customColor} from '@/../constants';
+
 export const Diary = ({content, hour, minute, id}) => {
   const [showLongPressModal, setShowLongPressModal] = useState(false);
 
@@ -40,15 +42,12 @@ export const Diary = ({content, hour, minute, id}) => {
         onBackdropPress={() => setShowLongPressModal(false)}>
         <ModalSection>
           <DeleteButton onPress={handleDeleteDiray}>
-            <ButtonText style={{color: 'red'}}>삭제하기</ButtonText>
+            <ButtonText style={{color: customColor.red}}>삭제하기</ButtonText>
           </DeleteButton>
           <Line />
-          {/* <CopyButton onPress={handleCopyDiray}>
-            <ButtonText style={{color: 'blue'}}>복사하기</ButtonText>
-          </CopyButton>
-          <Line /> */}
+
           <CancelButton onPress={() => setShowLongPressModal(false)}>
-            <ButtonText style={{color: 'gray'}}>취소하기</ButtonText>
+            <ButtonText style={{color: customColor.gray}}>취소하기</ButtonText>
           </CancelButton>
         </ModalSection>
       </ModalContainer>
@@ -74,6 +73,7 @@ const TimeSection = styled.View`
   justify-content: flex-end;
 `;
 const TimeText = styled.Text`
+  color: ${customColor.black};
   font-size: 20px;
 `;
 
@@ -85,6 +85,7 @@ const ContentText = styled.Text`
   font-size: 15px;
   padding-right: 10px;
   margin-bottom: 20px;
+  color: ${customColor.black};
 `;
 const ModalContainer = styled(Modal)`
   margin: 0;
@@ -94,7 +95,7 @@ const ModalContainer = styled(Modal)`
 const ModalSection = styled.View`
   width: 60%;
   height: 120px;
-  background-color: white;
+  background-color: ${customColor.white};
   border-radius: 15px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 `;
@@ -107,14 +108,9 @@ const CancelButton = styled.TouchableOpacity`
 const Line = styled.View`
   width: 100%;
   height: 1px;
-  background-color: gray;
+  background-color: ${customColor.gray};
 `;
-// const CopyButton = styled.TouchableOpacity`
-//   width: 100%;
-//   height: 33%;
-//   justify-content: center;
-//   align-items: center;
-// `;
+
 const DeleteButton = styled.TouchableOpacity`
   width: 100%;
   height: 50%;
@@ -123,6 +119,5 @@ const DeleteButton = styled.TouchableOpacity`
 `;
 
 const ButtonText = styled.Text`
-  color: blue;
   font-size: 20px;
 `;

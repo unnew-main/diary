@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {useSelector, useDispatch} from 'react-redux';
-import {selectDiary} from '../redux/diaryReducers';
-import {handleFirstDay} from '../redux/settingReducer';
+import {selectDiary} from '@redux/diaryReducers';
+import {handleFirstDay} from '@redux/settingReducer';
+import {customColor} from '@/../constants';
+
 export const MyPageScreen = () => {
   const [isFirstDay, setIsFirstDay] = useState(false);
   const selector = useSelector(selectDiary).DiaryReducer;
@@ -48,16 +50,18 @@ const AllDiarySection = styled.View`
 const AllDiaryText = styled.Text`
   font-size: 20px;
   margin-bottom: 5px;
+  color: ${customColor.gray};
 `;
 const AllDiaryData = styled.Text`
   font-size: 60px;
   font-weight: bold;
   margin-bottom: 30px;
+  color: ${customColor.green};
 `;
 const Line = styled.View`
   width: 100%;
   height: 1px;
-  background-color: gray;
+  background-color: ${customColor.gray};
   margin-bottom: 40px;
 `;
 const SettingSection = styled.View`
@@ -72,6 +76,6 @@ const CheckSection = styled.View`
 `;
 const CheckText = styled.Text`
   font-size: 20px;
-  color: gray;
+  color: ${customColor.gray};
 `;
 const CheckToggle = styled.Switch``;

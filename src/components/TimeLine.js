@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {customColor} from '@/../constants';
 export const TimeLine = () => {
   return (
     <LineSection>
@@ -20,7 +20,7 @@ const Point = styled.View`
   width: 20px;
   height: 20px;
   border-radius: 50px;
-  background-color: blue;
+  background-color: ${customColor.green};
   margin-top: 2px;
 `;
 const Line = styled.View`
@@ -28,5 +28,5 @@ const Line = styled.View`
   width: 2px;
   height: 900%;
   bottom: 0px;
-  background-color: blue;
+  background-color: ${customColor.green};
 `;

@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
-import {AddDiaryModal} from '../components/dayScreen/AddDiaryModal';
+import {AddDiaryModal} from '@components/dayScreen/AddDiaryModal';
 import {useSelector} from 'react-redux';
-import {selectDiary} from '../redux/diaryReducers';
-import {Diary} from '../components/dayScreen/Diary';
+import {selectDiary} from '@redux/diaryReducers';
+import {Diary} from '@components/dayScreen/Diary';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import {customColor} from '@/../constants';
 export const DayScreen = ({route}) => {
   const date = route.params ? route.params.date : null;
   const [nowDay, setNowDay] = useState(new Date());
@@ -123,10 +123,11 @@ const HandleDayButton = styled.TouchableOpacity`
 
 const Title = styled.Text`
   font-size: 30px;
+  color: ${customColor.black};
 `;
 
 const AddButton = styled.TouchableOpacity`
-  background-color: #00b386;
+  background-color: ${customColor.green};
   border-radius: 15px;
   width: 70px;
   height: 30px;

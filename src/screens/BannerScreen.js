@@ -1,6 +1,7 @@
 import React from 'react';
-import {TextLoop} from '../components/TextLoop';
+import {TextLoop} from '@components/TextLoop';
 import styled from 'styled-components/native';
+import {customColor} from '@/../constants';
 export const BannerScreen = ({navigation}) => {
   return (
     <Container>
@@ -32,11 +33,11 @@ const TitleView = styled.View`
 const Title = styled.View``;
 const UpTtle = styled.Text`
   font-size: 90px;
-  color: black;
+  color: ${customColor.green};
 `;
 const DownTitle = styled.Text`
   font-size: 90px;
-  color: black;
+  color: ${customColor.green};
 `;
 const StartButton = styled.TouchableOpacity`
   height: 20%;
@@ -46,5 +47,5 @@ const StartButton = styled.TouchableOpacity`
 `;
 const StartButtonText = styled(TextLoop)`
   font-size: 20px;
-  color: black;
+  color: ${customColor.black};
 `;

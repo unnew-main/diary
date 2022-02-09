@@ -3,12 +3,12 @@ import styled from 'styled-components/native';
 import DatePicker from 'react-native-date-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
-import {uploadDiary} from '../../redux/diaryReducers';
+import {uploadDiary} from '@redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
+import {customColor} from '@/../constants';
 export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
   const [diaryContent, setDiaryContent] = useState('');
   const [date, setDate] = useState(new Date(nowDay));
@@ -111,8 +111,7 @@ const ModalSection = styled.Modal`
   justify-content: center;
   align-items: center;
   margin: 0;
-
-  background-color: white;
+  background-color: ${customColor.white};
 `;
 const Container = styled.SafeAreaView`
   width: 100%;
@@ -130,21 +129,23 @@ const ModalHeader = styled.View`
 `;
 const Title = styled.Text`
   font-size: 30px;
+  color: ${customColor.black};
 `;
 const ButtonText = styled.Text`
-  color: blue;
+  font-size: 16px;
+  color: ${customColor.green};
 `;
 const BackButton = styled.TouchableOpacity`
   justify-content: flex-end;
   align-items: center;
-  color: blue;
+  color: ${customColor.green};
   width: 80px;
   height: 100%;
 `;
 const SubmitButton = styled.TouchableOpacity`
   justify-content: flex-end;
   align-items: center;
-  color: blue;
+  color: ${customColor.green};
   width: 80px;
   height: 100%;
 `;
@@ -157,12 +158,11 @@ const ModalBody = styled.View`
   align-items: center;
   width: 100%;
   height: 90%;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 const CenterView = styled.View`
   justify-content: flex-start;
   align-items: center;
-
   width: 100%;
   height: 90%;
 `;
@@ -176,21 +176,17 @@ const DiaryDateButton = styled.TouchableOpacity`
 `;
 const DiaryDateText = styled.Text`
   font-size: 20px;
-  color: black;
+  color: ${customColor.black};
 `;
 const DiaryTextInput = styled.TextInput`
   justify-content: center;
   align-items: flex-start;
-  /* width: 80%; */
-  /* height: 300px; */
   border-radius: 10px;
   border: 1px;
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-
-  /* top : hp('30%'); // 스크린 세로 크기의 30% 만큼 0에서부터 이동 */
 `;
 const Subtitle = styled.Text`
   width: 80%;
@@ -198,5 +194,5 @@ const Subtitle = styled.Text`
   margin-bottom: 10px;
   margin-top: 15px;
   margin-left: 10px;
-  color: gray;
+  color: ${customColor.gray};
 `;
