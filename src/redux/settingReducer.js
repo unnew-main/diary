@@ -6,6 +6,12 @@ const settingSlice = createSlice({
   reducers: {
     handleFirstDay: (state, action) => {
       state.firstDay = action.payload.firstDay === true ? 1 : 0;
+      (async () => {
+        try {
+          const firstDay = JSON.stringify(state.firstDay);
+          await AsyncStorage.setItem('firstDaySetting', firstDay);
+        } catch (e) {}
+      })();
     },
   },
 });

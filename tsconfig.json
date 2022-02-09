@@ -15,7 +15,8 @@
       "@/*": ["./*"],
       "@components/*": ["components/*"],
       "@redux/*": ["redux/*"],
-      "@scenes/*": ["scenes/*"]
+      "@scenes/*": ["scenes/*"],
+      "@storage/*": ["storage/*"]
     }
   },
   "exclude": [

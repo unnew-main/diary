@@ -10,12 +10,13 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {customColor} from '@/../constants';
+import {getAllData} from '@/storage/dataStorage';
 export const DayScreen = ({route}) => {
   const date = route.params ? route.params.date : null;
   const [nowDay, setNowDay] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
   const [todayDiary, setTodayDiary] = useState([]);
-
+  console.log(getAllData());
   const selector = useSelector(selectDiary).DiaryReducer;
   useEffect(() => {
     setNowDay(date !== null ? new Date(date) : new Date());

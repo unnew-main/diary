@@ -1,4 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {setAllData} from '@/storage/dataStorage';
+
 const diarySlice = createSlice({
   name: 'diary',
   initialState: [{nextId: 1}],
@@ -15,6 +17,7 @@ const diarySlice = createSlice({
 
         content: action.payload.content,
       });
+      setAllData(state);
       state[0].nextId += 1;
     },
     deleteDiary: (state, action) => {
@@ -29,3 +32,12 @@ const diarySlice = createSlice({
 export const {uploadDiary, deleteDiary, modifyDiary} = diarySlice.actions;
 export const selectDiary = state => state;
 export default diarySlice.reducer;
+
+// const getData = async () => {
+//   try {
+//     const jsonValue = await AsyncStorage.getItem('@storage_Key');
+//     return jsonValue != null ? JSON.parse(jsonValue) : null;
+//   } catch (e) {
+//     // error reading value
+//   }
+// };

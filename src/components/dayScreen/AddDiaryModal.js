@@ -9,15 +9,17 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {customColor} from '@/../constants';
+import {setAllData} from '@/storage/dataStorage';
 
 export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
   const [diaryContent, setDiaryContent] = useState('');
   const [date, setDate] = useState(new Date(nowDay));
   const [dateOpen, setDateOpen] = useState(false);
+  const [diaryData, setDiaryData] = useState({});
   const dispatch = useDispatch();
   useEffect(() => setDate(new Date(nowDay)), [nowDay]);
 
-  const submitDiary = ({date, diaryContent}) => {
+  const submitDiary = async ({date, diaryContent}) => {
     if (diaryContent === '') {
       alert('내용을 입력해주세요.');
       return;
@@ -33,6 +35,16 @@ export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
         content: diaryContent.toString(),
       }),
     );
+    await setDiaryData({
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+      hour: date.getHours(),
+      minute: date.getMinutes(),
+
+      content: diaryContent.toString(),
+    });
+    setAllData(diaryData);
     setShowModal(prev => !prev);
   };
   return (
