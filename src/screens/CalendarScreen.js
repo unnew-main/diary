@@ -6,8 +6,8 @@ import {selectDiary} from '@redux/diaryReducers';
 import {customColor} from '@/../constants';
 
 export const CalendarScreen = ({navigation}) => {
-  const {DiaryReducer: diarySelector, SettingReducer: settingSelector} =
-    useSelector(selectDiary);
+  const {diaryReducer: diarySelector, settingReducer: settingSelector} =
+    useSelector(state => state);
   const markedObject = new Object();
   diarySelector.map(data => {
     if (data.nextId) return false;
@@ -28,14 +28,6 @@ export const CalendarScreen = ({navigation}) => {
         markedDates={markedObject}
         theme={{
           todayTextColor: customColor.green,
-          'stylesheet.calendar.header': {
-            dayTextAtIndex0: {
-              color: 'red',
-            },
-            dayTextAtIndex6: {
-              color: 'blue',
-            },
-          },
         }}
       />
     </SafeAreaView>

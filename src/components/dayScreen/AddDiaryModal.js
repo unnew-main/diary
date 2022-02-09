@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import DatePicker from 'react-native-date-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
-import {uploadDiary} from '@redux/diaryReducers';
+import {uploadDiary} from '@/redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -35,16 +35,7 @@ export const AddDiaryModal = ({showModal, setShowModal, nowDay}) => {
         content: diaryContent.toString(),
       }),
     );
-    await setDiaryData({
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-      hour: date.getHours(),
-      minute: date.getMinutes(),
-
-      content: diaryContent.toString(),
-    });
-    setAllData(diaryData);
+    setDiaryContent('');
     setShowModal(prev => !prev);
   };
   return (

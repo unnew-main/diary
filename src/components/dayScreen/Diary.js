@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {TimeLine} from '@/components/dayScreen/TimeLine';
 import {useDispatch} from 'react-redux';
 import Modal from 'react-native-modal';
-import {deleteDiary} from '@redux/diaryReducers';
+import {deleteDiary} from '@/redux/diaryReducers';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -19,9 +19,7 @@ export const Diary = ({content, hour, minute, id}) => {
     setShowLongPressModal(false);
     dispatch(deleteDiary({id: id}));
   };
-  // const handleCopyDiray = () => {
-  //   setShowLongPressModal(false);
-  // };
+
   return (
     <Container>
       <TimeSection>

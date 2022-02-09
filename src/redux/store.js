@@ -1,11 +1,20 @@
 import {configureStore} from '@reduxjs/toolkit';
-import DiaryReducer from './diaryReducers';
-import SettingReducer from './settingReducer';
+import diaryReducer from './diaryReducers';
+import settingReducer from './settingReducers';
 import {combineReducers} from 'redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {persistStore, persistReducer} from 'redux-persist';
 
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
 const rootReducer = combineReducers({
-  DiaryReducer,
-  SettingReducer,
+  diaryReducer,
+  settingReducer,
 });
 
-export default store = configureStore({reducer: rootReducer});
+export const store = configureStore({
+  reducer: persistReducer(persistConfig, rootReducer),
+});
+export const persistor = persistStore(store);

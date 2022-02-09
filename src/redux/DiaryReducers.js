@@ -1,43 +1,36 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {setAllData} from '@/storage/dataStorage';
+
+function makeid(length) {
+  var result = '';
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result.toString();
+}
 
 const diarySlice = createSlice({
   name: 'diary',
-  initialState: [{nextId: 1}],
+  initialState: [],
   reducers: {
     uploadDiary: (state, action) => {
       state.push({
-        id: state[0].nextId,
-
-        year: action.payload.year,
-        month: action.payload.month,
-        day: action.payload.day,
-        hour: action.payload.hour,
-        minute: action.payload.minute,
-
-        content: action.payload.content,
+        ...action.payload,
+        id: makeid(10),
       });
-      setAllData(state);
-      state[0].nextId += 1;
+      console.log('state', state);
     },
     deleteDiary: (state, action) => {
       return (state = state.filter(data => data.id !== action.payload.id));
     },
-    modifyDiary: (state, action) => {
-      state.push('modify');
-    },
+    // modifyDiary: (state, action) => {
+    //   state.push('modify');
+    // },
   },
 });
 
-export const {uploadDiary, deleteDiary, modifyDiary} = diarySlice.actions;
+export const {uploadDiary, deleteDiary} = diarySlice.actions;
 export const selectDiary = state => state;
 export default diarySlice.reducer;
-
-// const getData = async () => {
-//   try {
-//     const jsonValue = await AsyncStorage.getItem('@storage_Key');
-//     return jsonValue != null ? JSON.parse(jsonValue) : null;
-//   } catch (e) {
-//     // error reading value
-//   }
-// };

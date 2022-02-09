@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {useSelector, useDispatch} from 'react-redux';
-import {selectDiary} from '@redux/diaryReducers';
-import {handleFirstDay} from '@redux/settingReducer';
+import {selectDiary} from '@/redux/diaryReducers';
+import {handleFirstDay} from '@/redux/settingReducers';
 import {customColor} from '@/../constants';
 
 export const MyPageScreen = () => {
   const [isFirstDay, setIsFirstDay] = useState(false);
-  const selector = useSelector(selectDiary).DiaryReducer;
+  const selector = useSelector(state => state.diaryReducer);
   const dispatch = useDispatch();
   const handleFirstDayToggle = () => {
     setIsFirstDay(prev => !prev);
@@ -16,7 +16,7 @@ export const MyPageScreen = () => {
   return (
     <Container>
       <AllDiarySection>
-        <AllDiaryData>{selector.length - 1}</AllDiaryData>
+        <AllDiaryData>{selector.length}</AllDiaryData>
         <AllDiaryText>당신의 기록들</AllDiaryText>
       </AllDiarySection>
       <Line />
